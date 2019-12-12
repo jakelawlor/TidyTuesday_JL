@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1576108741239.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3536693504",
+    "id" : "5EBB6B1A",
+    "lastKnownWriteTime" : 1576114112,
+    "last_content_update" : 1576114112549,
+    "path" : "~/TidyTuesday_JL/Dec11.19.R",
+    "project_path" : "Dec11.19.R",
+    "properties" : {
+        "cursorPosition" : "135,0",
+        "scrollLine" : "86",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
