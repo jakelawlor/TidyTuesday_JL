@@ -1,5 +1,7 @@
 ## this week's lesson was that you can make almost any existing plot in R. 
-## instead, I wanted to make one in a new way. 
+## instead, I wanted to make one visualization in a new way. 
+
+
 
 # Step 1. import and clean data
 #=== === === === === === === === === === === ===
@@ -109,13 +111,15 @@ plot.save<-function(i=10){
   
 }
 
-
 # save them out into a directory 
 library(purrr)
 dir.create("output")
 mydir<-("output")
 map(1:N, plot.save)
 # now we have like 76 separate pngs saved that will be each frame of a .gif
+plot.save(16)
+
+
 
 
 # Part 4. Convert to .gif
@@ -126,12 +130,21 @@ map(1:N, plot.save)
 # I had never used ImageMagick before. Needs to be installed through Terminal.
 # Kind of a pain in the butt. 
 setwd("output")
-library(magick)
+library(magick) # not really sure if we need this here
 system("convert -delay 20 *.png example_1.gif")
 # this takes all the .pngs you just created, and stitches them into a gif. 
 # change the delay number (20 above) for a slower or faster gif. 
 
 # check in the output folder for example_1.gif. 
 # Open in a browser because preview will show it static.  
+
+i=10
+# Part 5. Delete all the .pngs
+#--- --- --- --- --- --- --- --- --- ---
+
+for (i in 1:N){
+  unlink(paste0("output/plot-50",i,".png"))
+}
+
 
 
