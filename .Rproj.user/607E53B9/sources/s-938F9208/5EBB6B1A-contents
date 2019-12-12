@@ -132,7 +132,6 @@ getwd()
 # I had never used ImageMagick before. Needs to be installed through Terminal.
 # Kind of a pain in the butt. 
 setwd("output")
-library(magick) # not really sure if we need this here
 system("convert -delay 20 *.png example_1.gif")
 ?system
 system(command = "convert -delay 20 output/*.png output/measlesmap.gif")
