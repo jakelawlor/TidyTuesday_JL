@@ -1,12 +1,10 @@
-
-# Dog imports and exports in September 20, 2019
-
+# Shelter Dog data from Sep 20, 2019
+# #TidyTuesday Dec 17, 2019
 
 # Step 0. Load Libraries
 #--- --- --- --- --- --- --- --- --- ---
 library(tidyverse)
 devtools::install_github("clauswilke/ggtext")
-library(ggtext) # fonts
 library(cowplot)
 devtools::install_github("wmurphyrd/fiftystater")
 library(fiftystater) # states
@@ -16,8 +14,8 @@ library(PNWColors) # colors
 
 # Step 1. Load Data
 #--- --- --- --- --- --- --- --- --- ---
-moves <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-17/dog_moves.csv')
-travel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-17/dog_travel.csv')
+# moves <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-17/dog_moves.csv')
+# travel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-17/dog_travel.csv')
 descriptions <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-17/dog_descriptions.csv')
 
 
@@ -30,7 +28,7 @@ theme_update(plot.background   =element_rect(fill = "grey20"),
                                                family = "Helvetica Neue Thin",
                                                hjust = 0.5,
                                                color="grey75"),
-                    plot.subtitle = element_markdown(size = rel(1), 
+                    plot.subtitle = element_text(size = rel(1), 
                                               family = "Helvetica Neue Thin", 
                                               color = "grey75", 
                                               lineheight = 1.4,
@@ -49,6 +47,7 @@ theme_update(plot.background   =element_rect(fill = "grey20"),
 # Step 3. Build tools
 #--- --- --- --- --- --- --- --- --- ---
 names(state.abb) <- state.name # connect state abb and state name. will use later.
+names(state.name) <- state.abb # connect state abb and state name. will use later.
 Mode <- function(x) { #create "mode" function
   ux <- unique(x)
   ux[which.max(tabulate(match(x, ux)))]
@@ -65,7 +64,7 @@ descriptions %>%
              breed = Mode(breed_primary)) %>%  #mode of breed
   rename(state = contact_state) %>% 
   filter(!is.na(breed)) %>%  #remove no breed dogs
-  mutate(id = tolower(state.name[state])) %>% # change states to lower case
+  mutate(id = tolower(state.name[state])) %>% # match state abb to state name and change to lower case
   left_join(fifty_states,by="id") %>% # 
   ggplot(aes(x = long, y = lat,
              group = group, fill = breed))+
@@ -82,7 +81,7 @@ descriptions %>%
 
 # Step 5. save
 #--- --- --- --- --- --- --- --- --- ---
-ggsave(here::here("output","breedmap.png"), height = 5,width = 8.2)
+ggsave(here::here("output","Dec17.19","breedmap.png"), height = 5,width = 8.2)
 
 
 
@@ -91,11 +90,17 @@ ggsave(here::here("output","breedmap.png"), height = 5,width = 8.2)
 # PLOT 2 -- interstate export circle diagram
 #==========================================================
 
+library(tidyverse)
+library(countrycode)
+library(circlize)
+
+
 #=== === === === == === === === === === === === === === === === === === ===
 # Most of this cleaning code is from conkline on GitHub. 
 # I saw their nice #TidyTuesday on twitter and wanted to make a similar one.
 # https://github.com/conkline/TidyTuesdayScripts/blob/master/tidytuesday_121719_dogs.R
 #=== === === === == === === === === === === === === === === === === === ===
+
 
 dog_travel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-17/dog_travel.csv')
 dog_descriptions <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-17/dog_descriptions.csv')
@@ -106,6 +111,7 @@ dog_descriptions <- readr::read_csv('https://raw.githubusercontent.com/rfordatas
 dogs_total <- dog_travel %>%
   select(-c(contact_city, contact_state, description)) %>% 
   left_join(dog_descriptions, by="id")
+rm(dog_travel,dog_descriptions)
 
 #messy - lots of repeats/missing data - try to clean up
 dogs_cleaned <- dogs_total %>% distinct() %>% #keep only distinct rows
@@ -119,6 +125,7 @@ dogs_cleaned <- dogs_total %>% distinct() %>% #keep only distinct rows
             breed_unknown, still_there)) %>% #we don't need id_count anymore, also remove other variables we don't need
   filter(!grepl("foster", tolower(name))) %>% #some are ads for foster homes needed - remove
   arrange(id) #order by #ID
+rm(dogs_total)
 
 #final step of filtering - if multiple id matches, keep only the first
 lastid <- 0
@@ -135,6 +142,8 @@ for (i in 1:nrow(dogs_cleaned)){
 }
 
 dogs_cleaned <- dogs_cleaned[-idx_to_remove,]#remove these repeats
+rm(i,lastid,idx_to_remove)
+
 
 #clean up place of origin - recognizable state names/abbrevations or country names
 dogs_cleaned <- dogs_cleaned %>%
@@ -167,7 +176,7 @@ for (i in 1:nrow(dogs_cleaned)){
 #=== === === === == === === === === === === === === === === === === === ===
 # End conkline code.
 #=== === === === == === === === === === === === === === === === === === ===
-
+rm(dog_descriptions,dog_travel,i,idx_to_remove,thisid,lastid)
 
 dogs_cleaned <- dogs_cleaned %>% 
   select(c(id,breed_primary,size,origin,contact_country,rescue_location)) %>%
@@ -195,7 +204,7 @@ statelist <- c(northeast,southatlantic,southgulf,midwest,west) # order them this
 # color tools 
 #--- --- --- --- --- --- --- --- --- --- --- ---
 pal <- pnw_palette("Starfish",5) # build a palette
-totalsegs <- unique(abind(unique(rescue_network2$Var1),unique(rescue_network2$Var2)))
+totalsegs <- unique(abind::abind(unique(exports$Var1),unique(exports$Var2)))
 grid.col <- c( # make a vector colors of each state (colored by region). Not all states listed show up in segments, so this was kind of weird
   rep( pal[1], times = length(totalsegs[totalsegs %in% northeast])),
   rep( pal[2], times = length(totalsegs[totalsegs %in% southatlantic])),
@@ -208,13 +217,14 @@ circos.clear()
 # graph patameters 
 #--- --- --- --- --- --- --- --- --- ---
 par(
-  mar = c(1, .5, 1, .5),    # Margin around chart
-  bg = c("grey20")     # background color
+  mar = c(1, 0, 3, 0),    # Margin around chart
+  bg = c("grey20"),     # background color
+  family="Helvetica Neue Light"
 ) 
 
 # chord diagram
 #--- --- --- --- --- --- --- --- --- ---
-chordDiagram(x=rescue_network3, order=statelist,
+chordDiagram(x=exports, order=statelist,
              directional = 1,
              #  direction.type = "arrows",
              diffHeight = F,
@@ -245,8 +255,16 @@ circos.track(track.index = 2, panel.fun = function(x, y) {
               facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5), cex=.7,col="grey75")
 }, bg.border = NA) # add state labels
 
+# add title
+#--- --- --- --- --- --- --- --- --- --- --- ---
+#par(family="Helvetica Thin",col.main="grey75")
+title(main = list("Shelter Dog Trade Network",
+                  cex=2.4,
+                  col="grey75"))
+            
 
-
+# I just exported this one using the export pulldown on the plots tab.
+# That was the easiest way to control for sizing. 
 
 
             
