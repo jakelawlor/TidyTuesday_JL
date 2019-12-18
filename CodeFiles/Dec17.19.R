@@ -22,7 +22,7 @@ descriptions <- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
 # Step 2. Set Theme
 #--- --- --- --- --- --- --- --- --- ---
 theme_set(theme_void(base_size = 12))
-theme_update(plot.background   =element_rect(fill = "grey20"),
+theme_update(plot.background   =element_rect(fill = "grey15"),
                      panel.background = element_blank(),
                      plot.title = element_text(size = rel(2.3), 
                                                family = "Helvetica Neue Thin",
@@ -218,7 +218,7 @@ circos.clear()
 #--- --- --- --- --- --- --- --- --- ---
 par(
   mar = c(1, 0, 3, 0),    # Margin around chart
-  bg = c("grey20"),     # background color
+  bg = c("grey15"),     # background color
   family="Helvetica Neue Light"
 ) 
 
