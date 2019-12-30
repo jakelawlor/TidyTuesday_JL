@@ -5,6 +5,7 @@
 #--- --- --- --- --- --- --- --- --- ---
 library(tidyverse)
 devtools::install_github("clauswilke/ggtext")
+library(ggtext)
 library(cowplot)
 devtools::install_github("wmurphyrd/fiftystater")
 library(fiftystater) # states
