@@ -58,7 +58,7 @@ g.map<- function(i=10,d.list=dlist){
   plot_usmap(data=df[df$year %in% c(dlist[i]),],values="rate")+
     scale_fill_gradientn(name="Measles Cases    \nper 100,000",colors = pal,limits=c(0,max(df$rate,na.rm = T)))+
     theme_void()+
-    theme(plot.background = element_rect(color="#F2EDD7FF",fill="#F2EDD7FF"),
+    theme(plot.background = element_rect(color="#f5f3f3",fill="#f5f3f3"),
           legend.text  = element_text(family="Helvetica Neue Light"),
           legend.title = element_text(family="Helvetica Neue Light"))
 }
@@ -75,7 +75,7 @@ g.progress<- function(i=10,maxi=N){
     geom_bar(stat="identity", data=data.frame(x="progress",y=1),
              color="black",fill=NA)+
     ggtitle("1928-2003")+
-    theme(plot.background = element_rect(color="#F2EDD7FF",fill="#F2EDD7FF"),
+    theme(plot.background = element_rect(color="#f5f3f3",fill="#f5f3f3"),
           panel.background = element_blank(),
           panel.grid = element_blank(),
           axis.ticks = element_blank(),
@@ -99,9 +99,8 @@ g.progress(15)
 library(cowplot)
 plot_grid(g.map(10),g.progress(10), rel_heights=c(5,1),rel_widths = c(1,1),ncol=1)%>%
   ggdraw() +
-  theme(plot.background = element_rect(fill="#F2EDD7FF",color="#F2EDD7FF")) 
+  theme(plot.background = element_rect(fill="#f5f3f3",color="#f5f3f3")) 
   
-ggpubr::ggarrange(g.map(10),g.progress(10),heights = c(5,1),ncol=1)
 # looks great! 
 
 warnings()
@@ -110,7 +109,7 @@ warnings()
 #--- --- --- --- --- --- --- --- ---
 plotf<- function(i=10){plot_grid(g.map(i),g.progress(i), rel_heights=c(5,1),ncol=1,rel_widths = c(1,1)) %>%
     ggdraw() +
-    theme(plot.background = element_rect(fill="#F2EDD7FF",color="#F2EDD7FF"))
+    theme(plot.background = element_rect(fill="#f5f3f3",color="#f5f3f3"))
           }
 # test it
 plotf(37)
@@ -130,7 +129,6 @@ getwd()
 
 # save them out into a directory 
 library(purrr)
-dir.create("output")
 mydir<-("output/Dec11.19")
 map(1:N, plot.save)
 # now we have like 76 separate pngs saved that will be each frame of a .gif
@@ -146,8 +144,6 @@ getwd()
 # I had never used ImageMagick before. Needs to be installed through Terminal.
 # Kind of a pain in the butt. 
 setwd("output/Dec11.19")
-system("convert -delay 20 *.png example_1.gif")
-?system
 system(command = "convert -delay 20 *.png measlesmap.gif")
 # this takes all the .pngs you just created, and stitches them into a gif. 
 # change the delay number (20 above) for a slower or faster gif. 
