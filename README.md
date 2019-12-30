@@ -13,3 +13,8 @@ Follow along or get in touch [@Jake_Lawlor1](http://www.twitter.com/jake_lawlor1
 <img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec17.19/breedmap.png"  />
 <img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec17.19/exports.png"  />
 
+
+***
+### December 23, 2019: Populat Christmas Songs
+<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec23.19/treeplot.png"  />
+
