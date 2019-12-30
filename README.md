@@ -3,10 +3,9 @@
 My personal projects for the weekly [#TidyTuesday challenge](https://github.com/rfordatascience/tidytuesday) ordered by date.   
 Follow along or get in touch [@Jake_Lawlor1](http://www.twitter.com/jake_lawlor1).
 
-
 ***
-### December 10, 2019: Disease rates over time
-<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec11.19/measlesmap.gif"  />
+### December 23, 2019: Popular Christmas Songs
+<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec23.19/treeplot.png"  />
 
 ***
 ### December 17, 2019: US shelter dogs
@@ -15,6 +14,7 @@ Follow along or get in touch [@Jake_Lawlor1](http://www.twitter.com/jake_lawlor1
 
 
 ***
-### December 23, 2019: Popular Christmas Songs
-<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec23.19/treeplot.png"  />
+### December 10, 2019: Disease rates over time
+<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec11.19/measlesmap.gif"  />
+
 
