@@ -1,0 +1,19 @@
+﻿category,start,end
+very weak,1.00E+00,3.00E+08
+weak,3.00E+08,7.80E+09
+medium weak,7.80E+09,2.00E+10
+high weak,2.00E+10,2.17E+11
+very low medium,2.17E+11,1.05E+12
+low medium,1.05E+12,3.24E+13
+medium,3.24E+13,2.76E+15
+high medium,2.76E+15,9.92E+16
+low strong,9.92E+16,5.20E+17
+medium strong,5.20E+17,3.07E+19
+very strong,3.07E+19,3.99E+20
+nigh on uncrackable,3.99E+20,1.29E+30
+,,
+,,
+,,
+,,
+,,
+,,
