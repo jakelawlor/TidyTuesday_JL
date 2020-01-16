@@ -4,6 +4,11 @@ My personal projects for the weekly [#TidyTuesday challenge](https://github.com/
 Follow along or get in touch [@Jake_Lawlor1](http://www.twitter.com/jake_lawlor1).
 
 ***
+### Jan 14, 2020: Password Strengths
+<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Jan14.20/pwplot.png"  />
+
+
+***
 ### December 23, 2019: Popular Christmas Songs
 <img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec23.19/treeplot.png"  />
 
