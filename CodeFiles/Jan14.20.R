@@ -10,7 +10,7 @@ library(ggforce)
 
 
 
-# imported extra data files from Information is Beaituful blog, where the original TidyTuesday came from
+# imported extra data files from Knowledge is Beaituful blog, where the original TidyTuesday came from
 # https://docs.google.com/spreadsheets/d/1cz7TDhm0ebVpySqbTvrHrD3WpxeyE4hLZtifWSnoNTQ/edit#gid=12
 combos <- read.csv(here::here("data files","Jan14.20","pw_combos.csv"))
 strengths <- read.csv(here::here("data files","Jan14.20","pw_strengths.csv")) %>% filter(complete.cases(.))
@@ -130,7 +130,7 @@ fullplot <- bgplot +
                                                                         **<span style=color:#7CAE00>TwO cAsEs</span>**, 
                                                                         **<span style = color:#00BFC4> AlphaNum3r1c </span>**, 
                                                                     and **<span style=color:#C77CFF> Symb0!$ </span>**",
-       caption = "<br>Visualization by Jake Lawlor | Data by information is beautiful"
+       caption = "<br>Visualization by Jake Lawlor | Data by Knowledge is beautiful"
        ) +
   geom_curve(data = arrows,
              aes(x, y, xend = xend, yend = yend),
