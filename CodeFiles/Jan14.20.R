@@ -130,7 +130,7 @@ fullplot <- bgplot +
                                                                         **<span style=color:#7CAE00>TwO cAsEs</span>**, 
                                                                         **<span style = color:#00BFC4> AlphaNum3r1c </span>**, 
                                                                     and **<span style=color:#C77CFF> Symb0!$ </span>**",
-       caption = "<br>Visualization by Jake Lawlor | Data by Knowledge is beautiful"
+       caption = "<br>Visualization by Jake Lawlor | Data by Knowledge is Beautiful"
        ) +
   geom_curve(data = arrows,
              aes(x, y, xend = xend, yend = yend),
