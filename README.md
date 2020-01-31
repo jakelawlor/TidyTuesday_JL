@@ -4,6 +4,10 @@ My personal projects for the weekly [#TidyTuesday challenge](https://github.com/
 Follow along or get in touch [@Jake_Lawlor1](http://www.twitter.com/jake_lawlor1).
 
 ***
+### Jan 21, 2020: Spotify Playlists
+<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Jan21.20/PlaylistPlot.png"  />
+
+***
 ### Jan 14, 2020: Password Strengths
 <img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Jan14.20/pwplot.png"  />
 
