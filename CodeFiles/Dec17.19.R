@@ -58,7 +58,7 @@ pal <- pnw_palette("Winter",6)
 
 # Step 4. Clean and plot
 #--- --- --- --- --- --- --- --- --- ---
-descriptions %>% 
+dogmap <- descriptions %>% 
   filter(contact_state %in% state.abb) %>% # remove those with atypical state codes
   group_by(contact_state) %>% 
   summarise( total = n(),  # number per state
@@ -267,6 +267,10 @@ title(main = list("Shelter Dog Trade Network",
 # I just exported this one using the export pulldown on the plots tab.
 # That was the easiest way to control for sizing. 
 
-
+circle <- recordPlot()
             
+tiff("output/Dec17.19/exports.tiff", units="in", width=7.75, height=7.75, res=300)
+circle
+dev.off()
+
 

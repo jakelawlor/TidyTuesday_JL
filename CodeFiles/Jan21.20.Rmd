@@ -1,0 +1,139 @@
+---
+title: "Jan21.20"
+author: "Jake Lawlor"
+date: "1/31/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Tidy Tuesday Jan 21, 2020
+
+### Step 1: load data
+I used the SpotifyR package to extract the qualities of 
+a subset of 25 songs from three of my most used spotify playlists
+
+```{r data}
+load(here::here("data files","Jan21.20","playlists.Rdata"))
+```
+
+
+
+### Step 2: load libraries 
+
+
+```{r libs, echo=FALSE}
+library(dplyr)
+library(ggplot2)
+library(PNWColors)
+library(ggtext)
+library(patchwork)
+```
+
+
+### Step 3: order values
+
+```{r vector}
+order <- c("acousticness", 
+           "instrumentalness", 
+           "tempo", 
+           "loudness",
+           "valence",
+           "energy",
+           "danceability"
+) 
+```
+
+
+
+### Step 4: create main plot
+
+```{r main plot}
+
+pal <- pnw_palette("Spring",3)
+main <-  plot.df2 %>%
+  ggplot(aes(x=metric,y=value,group=interaction(playlist_name,metric),fill=playlist_name,color=playlist_name)) +
+  geom_polygon(aes(group=track.name),alpha=.01,size=.2,fill=NA,show.legend = F)+ 
+  scale_x_discrete(limits = order,
+                   labels=c("Acoustic","Instrumental","Fast","Loud","Happy","Energetic","Danceable"))+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values = pal)+
+  coord_polar(clip = "off")+
+  theme_minimal() + 
+  labs(title= "The Flavors of 3 Playlists",
+       subtitle = "<span style='color:#d8aedd'>Backyard BBQ</span>  <span style='color:#cb74ad'>Mellow Jams</span>    <span style='color:#ffc3a3'>Study Songs</span>")+
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text.y = element_blank(),
+        plot.title = element_markdown(family="Montserrat",
+                                      hjust=.5,
+                                      size=24),
+        plot.subtitle = element_markdown(family="Gill Sans",
+                                         size=16,
+                                         hjust=.5),
+        text = element_markdown(family="Gill Sans Light",
+                                size=16),
+        #plot.background = element_rect(color="grey20",fill="transparent")
+  )+
+  ylim(0,100)+
+  geom_polygon(data = . %>%  group_by(playlist_name,metric) %>% 
+                 summarise_at(c("value"),mean) %>%
+                 arrange(factor(metric, levels = order)) %>%
+                 ungroup(),
+               aes(x=metric,y=value,group=playlist_name,color=playlist_name,fill=playlist_name),alpha=.4,size=1.5,show.legend = F
+  ) 
+
+```
+
+
+### Step 5: create facet plot
+
+```{r facet plot}
+
+facet <- plot.df2 %>%
+  filter(playlist_name != "Groove") %>%
+  ggplot(aes(x=metric,y=value,group=interaction(playlist_name,metric),fill=playlist_name,color=playlist_name)) +
+  geom_polygon(aes(group=track.name),size=.2,alpha=.03,show.legend = F)+ 
+  scale_x_discrete(limits = order,
+                   labels=c("Acoustic","Instrumental","Fast","Loud","Happy","Energetic","Danceable"))+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values = pal)+
+  coord_polar(clip="off")+
+  theme_minimal() +
+  labs(caption = "Data from Spotify & SpotifyR | Visualization by @Jake_Lawlor1")+
+  theme(strip.text = element_blank(),
+        axis.title = element_blank(),
+        plot.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        plot.caption = element_markdown(family="Montserrat",
+                                        hjust=0.5,
+                                        size=10))+
+  ylim(0,100) +
+  facet_grid(~playlist_name)
+
+```
+
+
+### Step 6: merge to one
+
+```{r merge and save}
+panel <- (main + facet) + plot_layout(ncol = 1, heights = c(1 , 0.28))
+```
+
+
+### Step 7. View the plot
+```{r view}
+panel
+```
+
+
+### Step 8. Save
+```{r save}
+ggsave(here::here("output", "Jan21.20", "PlaylistPlot.png"), plot = panel,
+       width = 6, height = 8, limitsize = F)
+```
