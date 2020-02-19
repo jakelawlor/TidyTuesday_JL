@@ -3,6 +3,12 @@
 My personal projects for the weekly [#TidyTuesday challenge](https://github.com/rfordatascience/tidytuesday) ordered by date.   
 Follow along or get in touch [@Jake_Lawlor1](http://www.twitter.com/jake_lawlor1).
 
+
+***
+### Feb 18, 2020: Food-Related CO2 Emissions
+<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Feb18.20/food_white.png"  />
+
+
 ***
 ### Jan 21, 2020: Spotify Playlists
 <img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Jan21.20/PlaylistPlot.png"  />
