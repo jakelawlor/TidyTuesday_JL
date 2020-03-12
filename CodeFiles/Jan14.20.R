@@ -8,13 +8,14 @@ library(sysfonts)
 library(showtext)
 library(ggforce)
 
-
-
 # imported extra data files from Knowledge is Beaituful blog, where the original TidyTuesday came from
 # https://docs.google.com/spreadsheets/d/1cz7TDhm0ebVpySqbTvrHrD3WpxeyE4hLZtifWSnoNTQ/edit#gid=12
 combos <- read.csv(here::here("data files","Jan14.20","pw_combos.csv"))
 strengths <- read.csv(here::here("data files","Jan14.20","pw_strengths.csv")) %>% filter(complete.cases(.))
 
+
+# make color palette (ggplot default)
+pal <- scales::hue_pal()(4)
 
 
 # set my graphing themes
@@ -29,7 +30,7 @@ theme_update(
   axis.text.y = element_markdown(family = "Gill Sans MT",color=alpha("grey80",.7)),
   axis.title.y = element_markdown(family = "Gill Sans MT",color=alpha("grey80",.7)),
   plot.margin = margin(20, 30, 5, 15),
- plot.title = element_markdown(family = "Gills Sans MT",color=alpha("grey80",.7),size=30,hjust = .5),
+ plot.title = element_markdown(family = "Gill Sans MT",color=alpha("grey80",.7),size=30,hjust = .5),
  plot.subtitle = element_markdown(family="Gill Sans MT",color=alpha("grey80",.7),hjust = .5),
  plot.caption = element_markdown(family="Gill Sans MT",color =alpha("grey80",.7),size=6 )
 )
@@ -37,7 +38,6 @@ theme_update(
 
 
 # open quartz because my RStudio doesn't like fonts
-quartz()
 
 # plot the backgroun (shaded rectanges)
 bgplot <- ggplot() +
@@ -136,7 +136,8 @@ fullplot <- bgplot +
              aes(x, y, xend = xend, yend = yend),
              curvature = 0.15,
              size = 0.35,
-             colour=pal,alpha=.7,size=2)+
+             colour=pal,
+             alpha=.7)+
   geom_text( data=examples,
              aes(x=x,y=y,label=label,hjust=hjust),
              color=c("#F8766D","#7CAE00","#00BFC4","#C77CFF"),
