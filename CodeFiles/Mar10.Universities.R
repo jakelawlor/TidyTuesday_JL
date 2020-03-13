@@ -54,13 +54,14 @@ df3 <- df2 %>% select(-total_enrollment) %>%
   mutate(sum = rowSums(.[3:8])) %>%
   pivot_longer(names_to = "Category",cols = c(3:8)) %>%
   mutate(prop = value/sum*100) %>%
-  mutate(Category = factor(Category,
-                           levels=rev(c("White","Asian","Hispanic","Black","Native Hawaiian / Pacific Islander","American Indian / Alaska Native")))) %>%
   mutate(Category = case_when(
     Category == "Native Hawaiian / Pacific Islander" ~ "Native Hawaiian/\nPacific Islander",
     Category == "American Indian / Alaska Native" ~ "American Indian/\nAlaska Native",
     TRUE ~ as.character(Category)
-  ))
+  )) %>%
+  mutate(Category = factor(Category,
+                           levels=rev(c("White","Asian","Hispanic","Black","Native Hawaiian/\nPacific Islander","American Indian/\nAlaska Native")))) 
+  
 
 # order by % white
 pricy_order <- df3 %>% 
@@ -103,13 +104,15 @@ df3_cheap <- df2_cheap %>%
   mutate(sum = rowSums(.[3:8])) %>%
   pivot_longer(names_to = "Category",cols = c(3:8)) %>%
   mutate(prop = value/sum*100) %>%
-  mutate(Category = factor(Category,
-                           levels=rev(c("White","Asian","Hispanic","Black","Native Hawaiian / Pacific Islander","American Indian / Alaska Native")))) %>%
-  mutate(Category = case_when(
+   mutate(Category = case_when(
     Category == "Native Hawaiian / Pacific Islander" ~ "Native Hawaiian/\nPacific Islander",
     Category == "American Indian / Alaska Native" ~ "American Indian/\nAlaska Native",
     TRUE ~ as.character(Category)
-  ))
+  )) %>%
+  mutate(Category = factor(Category,
+                           levels=rev(c("White","Asian","Hispanic","Black","Native Hawaiian/\nPacific Islander","American Indian/\nAlaska Native")))) 
+
+
 
 
 
