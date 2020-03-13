@@ -201,7 +201,7 @@ plots <- ggpubr::ggarrange(pricy2,cheap2,nrow=1,common.legend = T)
 # make title in separate plot
 titleplot <- ggplot(data.frame(x = 1, y = 1)) +
   labs(x = NULL, y = NULL,
-       title = "Mind the Gap",
+       title = "Barriers to Entry?",
        #subtitle = "Relative proportion of students identifying as <br>**<b style='color:#ECECEC'>White</b>**, **<b style='color:#96B6B9'>Asian</b>**, **<b style='color:#658892'>Hispanic</b>**, **<b style='color:#46606C'>Black</b>**, **<b style='color:#313F46'>Pacific Islander</b>**, and **<b style='color:#2D2926'>American  Indian</b><br>** in the 50 highest and 50 lowest tuition colleges in the US<br>"
        subtitle = "Proportional representation of racial groups in student populations\nat the 50 highest total-price and 50 lowest total-price colleges in the United States") +
 #  theme_void() + 
