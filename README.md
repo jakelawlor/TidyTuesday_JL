@@ -5,6 +5,11 @@ Follow along or get in touch [@Jake_Lawlor1](http://www.twitter.com/jake_lawlor1
 
 
 ***
+### March 10, 2020: Diversity in US Universities
+<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Mar10.20.Diversity/diverse.png"  />
+
+
+***
 ### Feb 18, 2020: Food-Related CO2 Emissions
 <img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Feb18.20/food_white.png"  />
 
