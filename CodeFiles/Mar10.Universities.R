@@ -138,7 +138,7 @@ familytitles <- "Gill Sans MT Bold"
 fontcol <- "#0b060f"
 
 pricy2 <-pricy +
-  labs(title = "Highest Tuition Schools",
+  labs(title = "Highest Priced Schools",
        subtitle = "Ordered by % white students")+
   scale_fill_manual(values=pal)+
   scale_x_continuous(breaks = c(0,25,50,75,100),
@@ -166,7 +166,7 @@ pricy2 <-pricy +
   
 
 cheap2<-cheap +
-  labs(title = "Lowest Tuition Schools",
+  labs(title = "Lowest Priced Schools",
        subtitle = "Ordered by % white students")+
   scale_fill_manual(values=pal)+
   scale_x_continuous(breaks = c(0,25,50,75,100),
