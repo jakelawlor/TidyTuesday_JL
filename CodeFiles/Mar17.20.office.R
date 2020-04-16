@@ -101,8 +101,10 @@ bychar <- theysaid %>%
         plot.title = element_text(size=12,family=titlefont),
         plot.subtitle = element_text(size=10,family=subtitlefont))
 
+quartz()
 bychar
 
+warnings()
 
 # ok, now separate by gender
 #=== === === === === === === === === ===
