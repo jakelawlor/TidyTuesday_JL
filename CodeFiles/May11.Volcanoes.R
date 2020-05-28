@@ -210,8 +210,8 @@ rofmap <- map +
 #view map
 quartz()
 rofmap
-
-ggsave(here::here("output","May11.Volcano","map.png"),
+dev
+ggsave(here::here("output","May11.20.Volcano","map.png"),
        dpi=600)
 # upload ong volcano
 img1 <- png::readPNG(here::here("data files","images","Strato_spew.png"))
@@ -274,6 +274,18 @@ fullplot<-ggdraw() +
 fullplot
 # sizing of this is weird using quartz.. 
 # I had to save with white space on edge, then crop in preview
+warnings()
 
-ggsave(filename = here::here("output","May11.Volcano","ROFmap3.png"),
+
+ggsave(filename = here::here("output","May11.20.Volcano","ROFmap3.png"),
        dpi=500)
+
+ggsave(fullplot,filename = here::here("output","May11.20.Volcano","ROFmap4.pdf"),
+       width = 9.74, height = 9.08)
+
+
+pdftools::pdf_convert(here::here("output", "May11.20.Volcano", "ROFmap4.pdf"),
+                      format = "png", dpi = 400)
+
+
+
