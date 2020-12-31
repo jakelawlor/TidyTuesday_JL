@@ -200,7 +200,7 @@ plot <- data %>%
         text = element_text(family="Montserrat Light"),
         plot.title.position = "plot",
         plot.title = element_text(size=20, 
-                                  family = "Noteworthy Bold",
+                                  family = "Dosis Bold",
                                   margin = margin(t=5,b=5)),
         plot.subtitle = element_text(size=8),
         axis.text = element_text(family = "Montserrat SemiBold",
@@ -218,7 +218,7 @@ plot <- data %>%
   geom_text(data=data.frame(x=0.5,y=10.25,label = "Mean\nRating"),
             aes(x=x,y=y,label=label),
             nudge_x = -.13, nudge_y = .15,
-            size=3.25, hjust=1,
+            size=2.75, hjust=1,
             lineheight=.7,
             family= "Montserrat Medium")+
   # add segment
@@ -236,7 +236,7 @@ plot <- data %>%
             lineheight=.7,
             nudge_x = .05,
             nudge_y = .2,
-            hjust=0, vjust=.5, size=3.25,
+            hjust=0, vjust=.5, size=2.75,
             family="Montserrat Medium") 
 #--------- end plot ----------------
 
@@ -245,10 +245,22 @@ quartz()
 plot
 
 
-ggsave(filename = here("output","Dec.20_WashingtonHikes","hikes4.png"),
-       #device=cairo_pdf,
-       dpi=300)
+capabilities()
 
+ggsave(filename = here("output","Dec.20_WashingtonHikes","hikes4.pdf"),
+       device=cairo_pdf)
 
+library(pdftools)
+pdf_convert(pdf = glue::glue("{path}.pdf"), 
+            filenames = glue::glue("{path}.png"),
+            format = "png", dpi = 400)
 
+?pdf_fonts()
+path <- here("output","Dec.20_WashingtonHikes","hikes4")
 
+## convert PDF to PNG
+path <- here::here("plots", "2020_48", "2020_48_WashingtonTrails")
+ggsave(glue::glue("{path}.pdf"), width = 17, height = 12.5, device = cairo_pdf)
+pdf_convert(pdf = glue::glue("{path}.pdf"), 
+            filenames = glue::glue("{path}.png"),
+            format = "png", dpi = 400)
