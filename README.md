@@ -5,7 +5,7 @@ Follow along or get in touch [@Jake_Lawlor1](http://www.twitter.com/jake_lawlor1
 
 ***
 ### Dec 31, 2020: WA Hikes
-<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec.20_WashingtonHikes/hikes4.png"  />
+<img src="https://github.com/jakelawlor/TidyTuesday_JL/blob/master/output/Dec.20_WashingtonHikes/hikes5.png"  />
 
 ***
 ### May 11, 2020: Volcanoes
