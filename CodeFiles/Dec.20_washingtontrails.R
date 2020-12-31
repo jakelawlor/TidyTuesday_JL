@@ -194,8 +194,8 @@ plot <- data %>%
   # ---------- theme stuff ----------------
   ggthemes::theme_hc()+
   theme(panel.background = element_blank(),
-        plot.background = element_rect(color="#d3d9db",
-                                       fill="#d3d9db"),
+        plot.background = element_rect(color="#dfeaf0",
+                                       fill="#dfeaf0"),
         axis.line.x = element_line(size=.25),
         text = element_text(family="Montserrat Light"),
         plot.title.position = "plot",
@@ -245,10 +245,9 @@ quartz()
 plot
 
 
-capabilities()
 
-ggsave(filename = here("output","Dec.20_WashingtonHikes","hikes4.pdf"),
-       device=cairo_pdf)
+ggsave(filename = here("output","Dec.20_WashingtonHikes","hikes4.png"),
+       dpi=300)
 
 library(pdftools)
 pdf_convert(pdf = glue::glue("{path}.pdf"), 
