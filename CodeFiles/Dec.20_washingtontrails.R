@@ -246,20 +246,6 @@ plot
 
 
 
-ggsave(filename = here("output","Dec.20_WashingtonHikes","hikes4.png"),
+ggsave(filename = here("output","Dec.20_WashingtonHikes","hikes5.png"),
        dpi=300)
 
-library(pdftools)
-pdf_convert(pdf = glue::glue("{path}.pdf"), 
-            filenames = glue::glue("{path}.png"),
-            format = "png", dpi = 400)
-
-?pdf_fonts()
-path <- here("output","Dec.20_WashingtonHikes","hikes4")
-
-## convert PDF to PNG
-path <- here::here("plots", "2020_48", "2020_48_WashingtonTrails")
-ggsave(glue::glue("{path}.pdf"), width = 17, height = 12.5, device = cairo_pdf)
-pdf_convert(pdf = glue::glue("{path}.pdf"), 
-            filenames = glue::glue("{path}.png"),
-            format = "png", dpi = 400)
