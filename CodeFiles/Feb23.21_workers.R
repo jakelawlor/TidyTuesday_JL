@@ -14,7 +14,7 @@ library(extrafont)
 library(cowplot)
 font_import()
 loadfonts()
-
+?ggdraw
 
 
 
@@ -115,12 +115,12 @@ p2<- earn %>%
   geom_text(data = data.frame(race = c("Black","White","Hispanic\nor Latino", "Asian"),
                               label = c("Black","White","Hispanic\nor Latino", "Asian"),
                               x = 2015,
-                              y = c( 80, 200, 120, 270 )) %>%
+                              y = c( 80, 190, 117, 270 )) %>%
               mutate(race = factor(race, levels = c("Black","Hispanic\nor Latino","White","Asian"))),
             aes(x=x,y=y,label=label,color=race),
             family = "Open Sans Extrabold",
             fontface = "bold",
-            size=5.5,
+            size=5,
             lineheight=.7,
             show.legend = F)+
   
@@ -135,7 +135,7 @@ p2<- earn %>%
   theme(panel.border  = element_blank(),
         panel.grid.major.y =  element_line(linetype = "dashed", color = "grey70",size=.25),
         plot.title = element_text(color="#EC111A", family = "Open Sans Condensed Bold",size=25),
-        plot.subtitle = element_text(size=14,margin = margin(t=30,b=-20)),
+        plot.subtitle = element_text(size=14,margin = margin(t=30,b=-20), family = "Open Sans Semibold"),
         text = element_text(family="Open Sans"),
        # axis.title.y=element_text(position="top"),
         axis.text.x = element_text(size=9, hjust = c(0.1,.5,.9)),
@@ -266,16 +266,16 @@ fullplot2 <- ggdraw(topline) +
            family = "Open Sans",
            hjust=0,vjust=0,
            size=3)+
-annotate(geom = "text",
-         x=.51,
-         y=.435,
-         label = "Male Wage",
-         family = "Open Sans",
-         hjust=0,vjust=0,
-         size=3)
+  annotate(geom = "text",
+           x=.51,
+           y=.435,
+           label = "Male Wage",
+           family = "Open Sans",
+           hjust=0,vjust=0,
+           size=3)
 
 ggsave(fullplot2,
-       filename = here::here("output","Feb23.21.workers","plot2.png"),
+       filename = here::here("output","Feb23.21.workers","plot2.2.png"),
        height = 7,
        width = 7,
        units = "in",
@@ -283,7 +283,7 @@ ggsave(fullplot2,
 
 
 
-
+# add some random change to test 
 
 
 
